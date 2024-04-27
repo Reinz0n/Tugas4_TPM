@@ -5,6 +5,7 @@ import 'package:tugas4_tpm/hitung_keliling.dart';
 import 'package:tugas4_tpm/hitung_luas.dart';
 import 'package:tugas4_tpm/login.dart';
 import 'package:tugas4_tpm/situs_rekomendasi.dart';
+import 'package:tugas4_tpm/stopwatch.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/luas': (context) => HitungLuas(),
         '/keliling': (context) => HitungKeliling(),
         '/situs': (context) => SitusRekomendasi(),
+        '/stopwatch': (context) => StopwatchWidget(),
       },
       home: LoginScreen(),
     );

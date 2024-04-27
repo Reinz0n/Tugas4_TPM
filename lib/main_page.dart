@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tugas4_tpm/bottom_navigation_bar.dart';
+import 'package:tugas4_tpm/login.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -18,6 +20,12 @@ class MainPage extends StatelessWidget {
           _buildMenuItem(context, 'Situs Rekomendasi', '/situs'),
         ],
       ),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 0, // Current index of the selected bottom navigation item
+        onTap: (index) {
+          _onBottomNavItemTapped(context, index);
+        },
+      ),
     );
   }
 
@@ -30,6 +38,39 @@ class MainPage extends StatelessWidget {
         },
         child: Text(title),
       ),
+    );
+  }
+
+  // Function to handle bottom navigation item tap
+  void _onBottomNavItemTapped(BuildContext context, int index) {
+    if (index == 0) {
+      Navigator.pushNamed(context, '/stopwatch');
+    } else if (index == 1) {
+      _showHelpDialog(context);
+    } else if (index == 2) {
+      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    }
+  }
+
+  // Function to show help dialog
+  void _showHelpDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Help"),
+          content: Text("Halaman Utama yang berisi 5 menu daftar anggota, bilangan prima, hitung luas, hitung keliling, dan situs rekomendasi"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
